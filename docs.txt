@@ -1,0 +1,13 @@
+Mapeamento de atributos token GCP e GitHub Conditions:
+    
+attribute.repository == assertion.repository
+attribute.actor      == assertion.actor 
+
+Conditions: 
+ assertion.repository == 'SilasMesmo/SonarCI' && (assertion.ref == 'refs/heads/main' || assertion.ref.startsWith('refs/tags/'))
+
+ # Formato principalSet
+ principalSet://iam.googleapis.com/projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${PoolID}/attribute.repository/SilasMesmo/SonarCI
+ 
+ CI.yaml:
+    workload_identity_provider: projects/${PROJECT_NUMBER}/locations/global/workloadIdentityPools/${PoolID}/providers/github
